@@ -1,0 +1,3 @@
+guard 'coffeescript', :all_on_start => true, :output => 'web/js' do
+  watch(%r{^coffee/(.+\.coffee)$})
+end

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    {% block head %} 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    {% block title %}
+    <title>Moodulkapp</title>
+    {% endblock %}
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    {% block stylesheets %}
+    <link rel="stylesheet" href="{{ app.main_url }}css/style.css">
+    {% endblock %}
+    {% block headerscripts %}
+    <script src="{{ app.main_url }}js/vendor/modernizr-2.6.1.min.js"></script>
+    {% endblock %}
+    {% endblock %}
+</head>
+<body class="{% block bodyclass '' %}">
+    {% block bodyblock %}
+    {% block templates %}{% endblock %}
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+    <![endif]-->
+    <div class="page-wrap">
+        {% block header %}
+        {% spaceless %}
+        <header>
+           
+        </header>
+        {% endspaceless %}
+        {% endblock %}
+        <div class="content-holder">
+            <section class="content {% block content_type %}{% endblock %}">
+                {% block content %}{% endblock %}
+            </section>
+
+            {% block footer %}
+            <footer>
+                {% block footer_content %}{% endblock %}
+            </footer>
+            {% endblock %} 
+        </div>
+        {% block outer_content %}
+                
+        {% endblock %}
+    </div>
+    {% block footerscripts %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{{ app.main_url }}js/vendor/jquery-1.8.0.min.js"><\/script>')</script>
+    {# Remove comment tags to add lodash (underscore replacement)
+        <script src="{{ app.main_url }}js/vendor/lodash.min.js"></script>
+    #}
+    {# Remove comment tags to add json2
+        <script src="{{ app.main_url }}js/vendor/json2.js"></script>
+    #}
+    <script src="{{ app.main_url }}js/plugins.js"></script>
+    <script src="{{ app.main_url }}js/script.js"></script>
+
+    <script>
+    var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+        s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+    {% endblock %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Moodulkapp" default="build-dev">
+  <target name="build-dev">
+     <antcall target="config">
+      <param name="type" value="devel"/>
+    </antcall>
+  </target>
+  <target name="build-production">
+    <antcall target="config">
+      <param name="type" value="production"/>
+    </antcall>
+  </target>
+
+  <target name="composer" description="Install vendor packages">
+    <exec executable="composer">
+      <arg value="update" />
+    </exec>
+  </target>
+
+  <target name="config" description="Setting configuration">
+    <symlink link="${basedir}/config.php" resource="${basedir}/config/config.${type}.php" overwrite="true"/>
+  </target>
+
+  <target name="db" description="Building DB" depends="gen-entity, gen-proxy, update-db">
+  </target>
+
+  <target name="update-db" description="Updating database">
+    <exec executable="php" dir="${basedir}/cli">
+      <arg value="doctrine.php"/>
+      <arg value="orm:schema-tool:update"/>
+      <arg value="--force"/>
+    </exec>
+  </target>
+
+  <target name="gen-entity" description="Generating entities">
+    <exec executable="php" dir="${basedir}/cli">
+      <arg value="doctrine.php"/>
+      <arg value="orm:generate-entities"/>
+      <arg path="${basedir}/entity"/>
+    </exec>
+  </target>
+
+  <target name="gen-proxy" description="Generating proxies">
+    <exec executable="php" dir="${basedir}/cli">
+      <arg value="doctrine.php"/>
+      <arg value="orm:generate-proxies"/>
+      <arg path="${basedir}/proxy"/>
+    </exec>
+  </target>
+
+</project>
