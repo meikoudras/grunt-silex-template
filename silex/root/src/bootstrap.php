@@ -50,7 +50,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 /* register monolog */
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => __DIR__.'/../development.log',
-    'monolog.name' => 'elekter',
+    'monolog.name' => '{%= name %}',
     ));
 
 
@@ -64,7 +64,7 @@ $app->register(new Nutwerk\Provider\DoctrineORMServiceProvider(), array(
     'db.orm.entities' => array(array(
             'type' => 'annotation', // entity definition 
             'path' => __DIR__ . '/../entity', // path to your entity classes
-            'namespace' => 'Mk\Entity', // your classes namespace
+            'namespace' => '{%= entity_namespace %}', // your classes namespace
             )),
     ));
 

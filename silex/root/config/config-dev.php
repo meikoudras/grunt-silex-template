@@ -2,10 +2,10 @@
 
 define('DEBUG', true);
 /* DB */
-define('DB_HOST', 'localhost');
-define('DB_DB', 'elekter');
-define('DB_USER', 'root');
-define('DB_PASS', 'root');
+define('DB_HOST', '{%= database_host %}');
+define('DB_DB', '{%= database_name %}');
+define('DB_USER', '{%= database_user %}');
+define('DB_PASS', '{%= database_password %}');
 
 
 define('MAIN_URL', '/');

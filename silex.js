@@ -19,13 +19,46 @@ exports.warnOn = '*';
 // The actual init template.
 exports.template = function(grunt, init, done) {
 
-  grunt.helper('prompt', {type: 'silex'}, [
+  grunt.helper('prompt', {}, [
     // Prompt for these values.
     grunt.helper('prompt_for', 'name'),
     grunt.helper('prompt_for', 'title'),
-    grunt.helper('prompt_for', 'database name'),
-    grunt.helper('prompt_for', 'database user'),
-    grunt.helper('prompt_for', 'database password')
+    {
+      name: 'database_name',
+      message: 'Database name',
+      default: function(value, data, done) {
+        var database_name = data.name || '';
+        done(null, database_name);
+      }
+    },
+    {
+      name: 'database_user',
+      message: 'Database user',
+      default: 'root'
+    },
+    {
+      name: 'database_password',
+      message: 'Database password',
+      default: 'root'
+    },
+    {
+      name: 'database_host',
+      message: 'Database host',
+      default: 'localhost'
+    },
+    {
+      name: 'entity_namespace',
+      message: 'Entity namespace for Doctrine entitities ex. Project\\Entity',
+      default: function(value, data, done) {
+        var entity_namespace = data.name || '';
+        entity_namespace = entity_namespace.replace(/[\W_]+/g, '');
+        entity_namespace = entity_namespace.replace(/\w+/g, function(word) {
+          return word[0].toUpperCase() + word.slice(1).toLowerCase();
+        });
+        entity_namespace += '\\Entity';
+        done(null, entity_namespace);
+      }
+    }
   ], function(err, props) {
     props.keywords = [];
 
@@ -33,7 +66,7 @@ exports.template = function(grunt, init, done) {
     var files = init.filesToCopy(props);
 
     // Actually copy (and process) files.
-    init.copyAndProcess(files, props, {noProcess: 'libs/**'});
+    init.copyAndProcess(files, props, {noProcess: 'templates/**'});
 
     // Generate package.json file.
     init.writePackageJSON('package.json', props);

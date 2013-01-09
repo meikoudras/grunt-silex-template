@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Moodulkapp" default="build-dev">
+<project name="{%= title %}" default="build-dev">
   <target name="build-dev">
      <antcall target="config">
       <param name="type" value="devel"/>
