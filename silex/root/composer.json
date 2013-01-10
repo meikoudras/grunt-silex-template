@@ -31,7 +31,7 @@
         "doctrine/orm": "2.3.x-dev",
         "doctrine/dbal": "2.3.x-dev",
         "symfony/doctrine-bridge": "2.1.x-dev",
-        "nutwerk/doctrine-orm-provider":"*",
+        "meikoudras/doctrine-orm-provider":"dev-master",
         "swiftmailer/swiftmailer": "4.1.*"
     },
 
@@ -39,7 +39,7 @@
         "psr-0": {
             "Dia": "src/", 
             "Okiem": "src/", 
-            "Mk": "entity/"
+            "{%= entity_psr0 %}": "entity/"
         }
     }
 }
